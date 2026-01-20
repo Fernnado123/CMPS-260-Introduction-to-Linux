@@ -1,0 +1,2 @@
+README Answer
+`fgrep` treats patterns as fixed strings, avoiding regex interpretation.

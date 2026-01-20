@@ -1,0 +1,80 @@
+Step 1
+ls ; date
+ls ";" date
+
+Step 3
+man -f ls
+man -k shell
+man 1 ls
+
+Step 4
+{ man -f ls; man -k shell; man 1 ls | head -n 30; } 
+
+Step 5-6
+mkdir -p data/projects/{raw,processed} data/{notes,archive}
+ls -R data >> outputs/problem1_lecture2.txt
+
+Step 8-10
+cat > data/notes/notes1.txt
+# type 10+ lines, include:
+# - at least 2 blank lines
+# - one line with multiple spaces
+# - one line using TAB
+Ctrl+D
+
+cat >> data/notes/notes1.txt
+# add 3 more lines
+Ctrl+D
+
+Step 11
+cat -s data/notes/notes1.txt >> outputs/problem1_lecture2.txt
+cat -E data/notes/notes1.txt >> outputs/problem1_lecture2.txt
+cat -A data/notes/notes1.txt >> outputs/problem1_lecture2.txt
+tac data/notes/notes1.txt >> outputs/problem1_lecture2.txt
+
+Step 12
+touch -- -dashfile.txt
+cat -- -dashfile.txt
+
+Step 13
+ls -l
+ls -lh
+ls -ld data
+ls -ltr
+ls -A
+ls -R data
+
+Step 16
+chmod 640 data/notes/perms.txt
+ls -l data/notes/perms.txt >> outputs/problem1_lecture2.txt
+
+Step 17-21
+umask
+touch data/u_before.txt
+umask 027
+touch data/u_after.txt
+ls -l data/u_before.txt data/u_after.txt >> outputs/problem1_lecture2.txt
+
+Step 23-25
+echo "link target" > data/link_target.txt
+ln data/link_target.txt data/hardlink.txt
+ln -s data/link_target.txt data/symlink.txt
+ls -l data/link_target.txt data/hardlink.txt data/symlink.txt >> outputs/problem1_lecture2.txt
+
+rm data/link_target.txt
+ls -l data/hardlink.txt data/symlink.txt >> outputs/problem1_lecture2.txt
+
+Step 26-28
+find data -name "*.txt"
+find data -type f -size +0c
+find data -name "*.txt" -exec wc -w {} \;
+
+Step 29-31
+printf "apples\noranges\nwalnuts\n" > data/a.txt
+printf "apples\noranges\ngrapes\n" > data/b.txt
+
+diff data/a.txt data/b.txt
+cmp data/a.txt data/b.txt
+
+
+

@@ -1,0 +1,2 @@
+Pipelines avoid temporary files and stream data efficiently between processes.
+

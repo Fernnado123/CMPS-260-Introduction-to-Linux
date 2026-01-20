@@ -1,0 +1,5 @@
+What does `pwd` do? 
+`pwd` prints the full absolute path of the current working directory.
+
+What does `whoami` do?
+`whoami` prints the username of the currently logged-in user.

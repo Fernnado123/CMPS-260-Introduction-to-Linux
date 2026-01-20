@@ -1,0 +1,50 @@
+Problem 2 – Processes, Filters & Pipes
+
+Step 1
+cat > data/log.txt <<'EOF'
+alpha login OK
+alpha login FAIL
+bravo pay 19.99
+bravo pay 100.00
+charlie pay 7.50
+alpha browse products
+bravo browse checkout
+charlie login OK
+alpha login OK
+EOF
+
+Step 2-4
+who | wc -l
+wc -l < data/log.txt
+cat data/log.txt | wc -l
+
+Step 5-11
+sleep 90 &
+echo $!
+ps
+top
+pgrep sleep
+kill -15 PID
+kill -SIGTERM PID
+kill -TERM PID
+
+Script: scripts/problem2_processes_filters.sh
+#!/bin/bash
+sleep 1 &
+p1=$!
+sleep 2 &
+p2=$!
+wait
+echo "Exit status: $?"
+
+Run:
+bash scripts/problem2_processes_filters.sh >> outputs/problem2_commands.txt
+
+Step 14
+sort data/log.txt
+sort data/log.txt | uniq -c
+head -n 3 data/log.txt
+tail -n 3 data/log.txt
+cut -d' ' -f1 data/log.txt
+awk '{print $1, $NF}' data/log.txt
+

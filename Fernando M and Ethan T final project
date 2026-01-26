@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+ 
+void fillVehiclesInfo(string vehicles[], double pricesPerMiles[], int arraySize);
+void printVehicles(string vehicles[], double pricesPerMiles[], int arraySize);
+
+int main() {
+    const int NUMBER_OF_VEHICLES = 8;
+
+    string vehicles[NUMBER_OF_VEHICLES];
+    double pricesPerMiles[NUMBER_OF_VEHICLES];
+
+    string name, currentlocation, destination;
+    double destDistance, driveCost, total;
+    int vehicleIndex;
+
+    cout << fixed << setprecision(2);
+
+    
+    fillVehiclesInfo(vehicles, pricesPerMiles, NUMBER_OF_VEHICLES);
+    printVehicles(vehicles, pricesPerMiles, NUMBER_OF_VEHICLES);
+
+    cout << "\nEnter vehicle index: ";
+    cin >> vehicleIndex;
+
+    if (vehicleIndex < 1 || vehicleIndex > NUMBER_OF_VEHICLES) {
+        cout << "Invalid vehicle index.\n";
+        return 0;
+    }
+
+    cin.ignore();
+    cout << "Enter your Name: ";
+    getline(cin, name);
+
+    cout << "Enter your Current location: ";
+    getline(cin, currentlocation);
+
+    cout << "Enter your destination: ";
+    getline(cin, destination);
+
+    cout << "How far away is your destination in miles? ";
+    cin >> destDistance;
+
+    if (destDistance <= 0) {
+        cout << "Invalid distance.\n";
+        return 0;
+    }
+
+    driveCost = (destDistance < 5) ? 5 : 7;
+
+    total = driveCost + destDistance * pricesPerMiles[vehicleIndex - 1];
+
+    cout << "\nHi " << name
+         << "\nTotal cost: $" << total << endl;
+
+    return 0;
+}
+
+
+void fillVehiclesInfo(string vehicles[], double pricesPerMiles[], int arraySize) {
+    if (arraySize > 0) {
+        vehicles[0] = "SUV";
+        pricesPerMiles[0] = 1.50;
+    }
+    if (arraySize > 1) {
+        vehicles[1] = "Sedan";
+        pricesPerMiles[1] = 0.39;
+    }
+}
+
+void printVehicles(string vehicles[], double pricesPerMiles[], int arraySize) {
+    cout << "\nAvailable Vehicles:\n";
+    for (int i = 0; i < arraySize; i++) {
+        if (!vehicles[i].empty()) {
+            cout << i + 1 << ") " << vehicles[i]
+                 << " - $" << pricesPerMiles[i] << " per mile\n";
+        }
+    }
+}
